@@ -77,6 +77,57 @@ const updateBlogs = async function(req, res) {
     }
 }
 
+//------------------------------------delete controller---------------------//
+
+const deleteBlog = async function (req, res) {
+    try {
+
+        let blogId = req.params.blogId
+        let blog = await blogModel.findOneAndUpdate({ _id: blogId, isDeleted: false }, { $set: { isDeleted: true, deletedAt: dateAndTime } }, { new: true })
+        if (blog == null) {
+            return res.status(404).send({ status: false, message: "blog not found" })
+        }
+        else {
+            return res.status(200).send()
+        }
+
+    } catch (error) {
+        return res.status(500).send({ status: false, message: error.message })
+    }
+}
+
+const deleteBlogsByQuery = async function (req, res) {
+    try {
+        let data = req.query
+
+        let id = req.authorId
+
+        let { category, authorId, tags, subcategory, isPublished } = data
+
+        let deletedBlog = await blogModel.updateMany(
+            {
+                $and: [
+                    { isDeleted: false }, { authorId: id }, data
+                ]
+            },
+            { $set: { isDeleted: true, deletedAt: dateAndTime } }
+
+        )
+        if (deletedBlog.modifiedCount > 0) {
+            return res.status(200).send({ status: true, message: `${deletedBlog.modifiedCount} blog deleted` })
+        }
+        else return res.status(404).send({ status: false, message: "no blogs found" })
+
+
+    } catch (error) {
+        return res.status(500).send({ status: false, message: error.message })
+
+    }
+}
+
+
 module.exports.createBlog = createBlog
 module.exports.getBlogs = getBlogs;
 module.exports.updateBlogs = updateBlogs
+module.exports.deleteBlog = deleteBlog
+module.exports.deleteBlogsByQuery = deleteBlogsByQuery
