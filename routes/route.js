@@ -26,11 +26,18 @@ router.get(
     blogController.getBlogs
 );
 
+router.put(
+    "/blogs/:blogId",
+    middleware1.verifyId,
+    jwtMiddleware.verifytoken,
+    jwtMiddleware.authorizedAuthor,
+    blogController.updateBlogs
+);
 
 
 //------------------creating default API for get,post,put and delete request-------------//
-router.use("*", function (req, res) {
-    res.status(400).send("please send valid request")
-})
-//--------------------exporting the router file--------------------------//
+router.use("*", function(req, res) {
+        res.status(400).send("please send valid request")
+    })
+    //--------------------exporting the router file--------------------------//
 module.exports = router;

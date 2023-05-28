@@ -4,7 +4,7 @@ const blogModel = require("../model/blogModel")
 const moment = require("moment")
 let dateAndTime = moment().format('LLLL');
 
-const createBlog = async function (req, res) {
+const createBlog = async function(req, res) {
     try {
         let data = req.body
         let blog = await blogModel.create(data)
@@ -18,15 +18,14 @@ const createBlog = async function (req, res) {
     }
 }
 
-const getBlogs = async function (req, res) {
+const getBlogs = async function(req, res) {
     try {
         let data = req.query;
         let { authorId, category, tags, subcategory } = data;
         let blogs = await blogModel.find({ $and: [{ isPublished: true }, { isDeleted: false }, data] })
         if (blogs.length < 1) {
             return res.status(400).send({ status: false, message: "No Blogs Found" })
-        }
-        else {
+        } else {
             return res.status(200).send({ status: true, message: "Blogs list", data: blogs })
         }
 
@@ -37,9 +36,47 @@ const getBlogs = async function (req, res) {
 }
 
 
+const updateBlogs = async function(req, res) {
+    try {
+
+        let data = req.body;
+        let { title, body, tags, subcategory, isPublished, publishedAt } = data
+        let blogId = req.params.blogId
+        if (isPublished == true) {
+            publishedAt = dateAndTime
+        } else if (isPublished == false) {
+            publishedAt = null
+        }
+
+        let updateBlogs = await blogModel.findByIdAndUpdate(
+            blogId, {
+                $set: {
+                    title: title,
+                    body: body,
+                    isPublished: isPublished,
+                    publishedAt: publishedAt
+                },
+                $addToSet: {
+                    tags: tags,
+                    subcategory: subcategory
+                }
+
+            }, { new: true }
+        )
+        if (updateBlogs.isDeleted == false) {
+            return res.status(200).send({ status: true, message: "Blog updated successfully", data: updateBlogs })
+        } else if (updateBlogs.isDeleted == true) {
+            return res.status(400).send({ status: false, message: "blog is not present" })
+
+        }
+
+    } catch (error) {
+
+        return res.status(500).send({ status: false, message: error.message })
+
+    }
+}
+
 module.exports.createBlog = createBlog
 module.exports.getBlogs = getBlogs;
-
-
-
-
+module.exports.updateBlogs = updateBlogs
