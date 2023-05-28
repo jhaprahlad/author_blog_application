@@ -20,5 +20,25 @@ const createAuthor = async function (req, res) {
     }
 
 }
+const authorLogin = async function (req, res) {
+    try {
+        let id = req.authorId;
+    let token = jwt.sign(
+        {
+            authorId: id,
+        },
+        "Prahlad_Rohit_Sofiyan_Saurabh_Secret_Key"
+    )
+    res.setHeader("x-api-key", token)
 
+    res.status(200).send({
+        "status": true,
+        "data": { "token": token }
+    })
+    } catch (error) {
+       return res.status(500).send({ status: false, message: error.message })   
+    }
+
+}
 module.exports.createAuthor = createAuthor
+module.exports.authorLogin = authorLogin

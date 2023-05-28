@@ -13,6 +13,12 @@ const jwtMiddleware = require("../middleware/jwtMiddleware");
 router.post("/authors", authorController.createAuthor);
 
 router.post(
+    "/login",
+    jwtMiddleware.verifyEmailPass,
+    authorController.authorLogin
+);
+
+router.post(
     "/blogs",
     middleware1.authorChecker,
     jwtMiddleware.verifytoken,
@@ -32,6 +38,21 @@ router.put(
     jwtMiddleware.verifytoken,
     jwtMiddleware.authorizedAuthor,
     blogController.updateBlogs
+);
+router.delete(
+    "/blogs/:blogId",
+    middleware1.verifyId,
+    jwtMiddleware.verifytoken,
+    jwtMiddleware.authorizedAuthor,
+    blogController.deleteBlog
+);
+
+router.delete(
+    "/blogs",
+    middleware1.verifyId,
+    jwtMiddleware.verifytoken,
+    jwtMiddleware.authorizedAuthor,
+    blogController.deleteBlogsByQuery
 );
 
 
