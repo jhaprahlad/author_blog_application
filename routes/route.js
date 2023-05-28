@@ -19,6 +19,15 @@ router.post(
     blogController.createBlog
 );
 
+router.get(
+    "/blogs",
+    middleware1.verifyId,
+    jwtMiddleware.verifytoken,
+    blogController.getBlogs
+);
+
+
+
 //------------------creating default API for get,post,put and delete request-------------//
 router.use("*", function (req, res) {
     res.status(400).send("please send valid request")

@@ -21,4 +21,21 @@ const authorChecker = async function (req, res, next) {
     }
 }
 
+const verifyId = async function (req, res, next) {
+    try {
+        let authorId = req.query.authorId
+        let blogId = req.params.blogId
+        let id=blogId || authorId
+        
+        if (id && !ObjectId.isValid(id)) {
+            return res.status(400).send({status:true,message:"Please enter a valid id"})
+        }
+        next()
+    } catch (error) {
+       return res.status(500).send(error.message)
+    }
+}
+
+
 module.exports.authorChecker = authorChecker
+module.exports.verifyId = verifyId
