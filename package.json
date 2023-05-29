@@ -1,7 +1,10 @@
 {
   "name": "author_blog_project",
   "version": "1.0.0",
+
   "description": "In this project we are going to create a mini bloggin site.",
+
+
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
