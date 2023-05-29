@@ -31,7 +31,7 @@ const authorLogin = async function (req, res) {
     )
     res.setHeader("x-api-key", token)
 
-    res.status(200).send({
+   return  res.status(200).send({
         "status": true,
         "data": { "token": token }
     })
