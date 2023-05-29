@@ -16,8 +16,8 @@ const createAuthor = async function (req, res) {
             return res.status(400).send({ status: false, message: "email should be unique" })
         }
         else {
-            console.log(err)
-            return res.status(500).send({ status: true, message: error.message })
+            // console.log(err)
+            return res.status(500).send({ status: false, message: error.message })
         }
 
     }

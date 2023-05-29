@@ -52,7 +52,7 @@ const updateBlogs = async function(req, res) {
         if(Object.keys(data).length<1){
             return res.status(400).send({status:false,message:"cannot update without data"})
         }
-        console.log(data)
+        // console.log(data)
     
         let { title, body, tags, subcategory, isPublished, publishedAt,isDeleted } = data
         let blogId = req.params.blogId
