@@ -61,7 +61,7 @@ const authorSchema = new mongoose.Schema({ //creting a Schema for author model
     trim: true,
     validate: {
       validator: function (value) {
-        return !/\s/.test(value);
+        return !/\s/.test(value); 
       },
       message: 'Password should not contain any spaces.'
     }

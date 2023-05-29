@@ -24,7 +24,7 @@ const getBlogs = async function(req, res) {
         let { authorId, category, tags, subcategory } = data;
         let blogs = await blogModel.find({ $and: [{ isPublished: true }, { isDeleted: false }, data] })
         if (blogs.length < 1) {
-            return res.status(400).send({ status: false, message: "No Blogs Found" })
+            return res.status(404).send({ status: false, message: "No Blogs Found" })
         } else {
             return res.status(200).send({ status: true, message: "Blogs list", data: blogs })
         }
@@ -67,7 +67,7 @@ const updateBlogs = async function(req, res) {
         if (updateBlogs.isDeleted == false) {
             return res.status(200).send({ status: true, message: "Blog updated successfully", data: updateBlogs })
         } else if (updateBlogs.isDeleted == true) {
-            return res.status(400).send({ status: false, message: "blog is not present" })
+            return res.status(404).send({ status: false, message: "blog is not present" })
 
         }
 
