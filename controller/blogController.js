@@ -1,5 +1,4 @@
-const { cachedDataVersionTag } = require("v8")
-const { updateMany } = require("../model/authorModel")
+const authorModel = require("../model/authorModel")
 const blogModel = require("../model/blogModel")
 const moment = require("moment")
 let dateAndTime = moment().format('LLLL');
