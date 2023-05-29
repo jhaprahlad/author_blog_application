@@ -60,6 +60,7 @@ const authorSchema = new mongoose.Schema({ //creting a Schema for author model
 
 }, { timestamps: true })
 
+//exporting author model
 module.exports = mongoose.model("Author", authorSchema)
 
 

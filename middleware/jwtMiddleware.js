@@ -3,7 +3,7 @@ const blogModel = require("../model/blogModel")
 const jwt = require("jsonwebtoken")
 const validator = require("validator")
 
-
+// creating middleware for verifying emailId and passeord while login 
 const verifyEmailPass = async function (req, res, next) {
     try {
         let data = req.body
@@ -28,6 +28,7 @@ const verifyEmailPass = async function (req, res, next) {
 
 }
 
+//creating middleware for verifying header Token 
 const verifytoken = async function (req, res, next) {
     try {
         let token = req.header("x-api-key")
@@ -49,6 +50,7 @@ const verifytoken = async function (req, res, next) {
     }
 }
 
+//creating middleware for authorization
 const authorizedAuthor = async function (req, res, next) {
     try {
         let id = req.authorId
@@ -77,6 +79,7 @@ const authorizedAuthor = async function (req, res, next) {
 
 }
 
+//exporting 
 module.exports.verifyEmailPass = verifyEmailPass
 module.exports.verifytoken = verifytoken
 module.exports.authorizedAuthor = authorizedAuthor

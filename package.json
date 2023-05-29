@@ -1,12 +1,12 @@
 {
   "name": "author_blog_project",
   "version": "1.0.0",
-  "description": "Repository for backend cohort - Technetium",
+  "description": "In this project we are going to create a mini bloggin site.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Prahlad Kumar Jha, Sk Rohit Hossain, Saurabh Digambar, Sofiyan Sayyed",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",

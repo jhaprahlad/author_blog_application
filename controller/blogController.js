@@ -4,6 +4,7 @@ const blogModel = require("../model/blogModel")
 const moment = require("moment")
 let dateAndTime = moment().format('LLLL');
 
+//----------------------------------creating blog---------------------------------------------------------//
 const createBlog = async function(req, res) {
     try {
         let data = req.body
@@ -18,6 +19,8 @@ const createBlog = async function(req, res) {
     }
 }
 
+
+//------------------------------geeting all the list of blog---------------------------------------------//
 const getBlogs = async function(req, res) {
     try {
         let data = req.query;
@@ -35,6 +38,7 @@ const getBlogs = async function(req, res) {
     }
 }
 
+//-----------------------------------------updating the blog-----------------------------------------------------//
 
 const updateBlogs = async function(req, res) {
     try {
@@ -77,7 +81,7 @@ const updateBlogs = async function(req, res) {
     }
 }
 
-//------------------------------------delete controller---------------------//
+//------------------------------------deleteting the blog---------------------//
 
 const deleteBlog = async function (req, res) {
     try {
@@ -125,7 +129,7 @@ const deleteBlogsByQuery = async function (req, res) {
     }
 }
 
-
+//exporting
 module.exports.createBlog = createBlog
 module.exports.getBlogs = getBlogs;
 module.exports.updateBlogs = updateBlogs

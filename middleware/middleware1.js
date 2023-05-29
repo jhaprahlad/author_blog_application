@@ -2,6 +2,7 @@ const authorModel = require("../model/authorModel")
 const mongoose = require("mongoose")
 const ObjectId = mongoose.Types.ObjectId
 
+// creating middleware for verifying ID form req.body
 const authorChecker = async function (req, res, next) {
     try {
         let id = req.body.authorId
@@ -20,7 +21,7 @@ const authorChecker = async function (req, res, next) {
       return res.status(500).send({status:true,message:true})
     }
 }
-
+// creating middleware for verifying ID from req.params as well as req.query
 const verifyId = async function (req, res, next) {
     try {
         let authorId = req.query.authorId
@@ -36,6 +37,6 @@ const verifyId = async function (req, res, next) {
     }
 }
 
-
+//exporting 
 module.exports.authorChecker = authorChecker
 module.exports.verifyId = verifyId

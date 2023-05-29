@@ -1,6 +1,8 @@
 const authorModel = require("../model/authorModel")
 const jwt = require("jsonwebtoken")
 
+
+//------------------------creating Author-----------------------------------//
 const createAuthor = async function (req, res) {
     try {
         let data = req.body;
@@ -20,6 +22,8 @@ const createAuthor = async function (req, res) {
     }
 
 }
+
+//-------------------creating jwt token while login----------------------------//
 const authorLogin = async function (req, res) {
     try {
         let id = req.authorId;
@@ -40,5 +44,7 @@ const authorLogin = async function (req, res) {
     }
 
 }
+
+//exporting
 module.exports.createAuthor = createAuthor
 module.exports.authorLogin = authorLogin
