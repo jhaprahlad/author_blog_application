@@ -37,11 +37,11 @@ const verifytoken = async function (req, res, next) {
     try {
         let token = req.header("x-api-key")
         if (!token) { 
-            return res.status(400).send({ status: false, message: "required token is missing" })
+            return res.status(401).send({ status: false, message: "required token is missing (first login)" })
         }
         let decoded = jwt.verify(token, "Prahlad_Rohit_Sofiyan_Saurabh_Secret_Key")
         if (!decoded) {
-            return res.status(400).send({ status: false, message: "invalid token" })
+            return res.status(401).send({ status: false, message: "invalid token" })
         }
         req.authorId = decoded.authorId
         next()

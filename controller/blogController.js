@@ -8,6 +8,12 @@ let dateAndTime = moment().format('LLLL');
 const createBlog = async function(req, res) {
     try {
         let data = req.body
+        if(data.isPublished== true){
+            data.publishedAt = dateAndTime
+        }
+        if(data.isDeleted==true){
+            return res.status(400).send({status:false,message:"cannot delete before creation"})
+        }
         let blog = await blogModel.create(data)
         return res.status(201).send({ "status": true, "data": blog })
     } catch (error) {
@@ -44,8 +50,16 @@ const updateBlogs = async function(req, res) {
     try {
 
         let data = req.body;
-        let { title, body, tags, subcategory, isPublished, publishedAt } = data
+        if(Object.keys(data).length<1){
+            return res.status(400).send({status:false,message:"cannot update without data"})
+        }
+        console.log(data)
+    
+        let { title, body, tags, subcategory, isPublished, publishedAt,isDeleted } = data
         let blogId = req.params.blogId
+        if(isDeleted==true){
+            return res.status(400).send({status:false,message:"cannot delete while updating"})
+        }
         if (isPublished == true) {
             publishedAt = dateAndTime
         } else if (isPublished == false) {

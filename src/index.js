@@ -15,7 +15,7 @@ const PORT = 4000;
 //---------------------------connecting to mongoDB--------------------------------//
 mongoose
     .connect(
-        "mongodb+srv://jhaprahlad:mEG8wRQKwJidfdq2@cluster0.qqlks75.mongodb.net/author_blog_project_1?retryWrites=true&w=majority",
+        "mongodb+srv://jhaprahlad:mEG8wRQKwJidfdq2@cluster0.qqlks75.mongodb.net/group4Database?retryWrites=true&w=majority",
         {
             useNewUrlParser: true,
         }
