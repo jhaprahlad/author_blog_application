@@ -3,14 +3,14 @@ const mongoose = require("mongoose") //importing mongoose
 const blogSchema = new mongoose.Schema({ //creting a Schema for blog model
     title:{
         type:String,
-        minLength:2, //big fixed for min length
+        minLength:[2,"minimun length of title should be 2 characters"],
         required:[true, "title is required"],
         trim:true
     },
 
     body:{
         type:String,
-        minLength:2, //big fixed for min length
+        minLength:[10,"minimun length of body should be 10 characters"],
         required:[true, "body is required"],
         trim:true
     },
