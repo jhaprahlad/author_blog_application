@@ -14,11 +14,11 @@ const authorChecker = async function (req, res, next) {
         }
         let author = await authorModel.findById(id)
         if (!author) {
-            return res.status(404).send({ status: false, message: "there is no author with this author id" })
+            return res.status(400).send({ status: false, message: "there is no author with this author id" })
         }
         next()
     } catch (error) {
-      return res.status(500).send({status:true,message:true})
+      return res.status(500).send({status:false,message:error.message})
     }
 }
 // creating middleware for verifying ID from req.params as well as req.query
