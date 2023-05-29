@@ -4,27 +4,33 @@ const authorSchema = new mongoose.Schema({ //creting a Schema for author model
   fname: {
     type: String,
     required: [true, "fname is required"],
+    minLength:2,  //bug fix for min length and max length
+    maxLength:100,
     trim: true,
     validate: {
       validator: function (value) {
         const nameRegex = /^[A-Za-z\s]+$/;
         return nameRegex.test(value);
       },
-      message: 'Name should only contain alphabets and spaces.'
+      message: 'Name should only contain only alphabets.'//bug fix
     }
   },
+
   lname: {
     type: String,
     required: [true, "lname is required"],
     trim: true,
+    minLength:2,   //bug fix for min length and max length
+    maxLength:100,
     validate: {
       validator: function (value) {
         const nameRegex = /^[A-Za-z\s]+$/;
         return nameRegex.test(value);
       },
-      message: 'Name should only contain alphabets and spaces.'
+      message: 'Name should only contain only alphabets'//bug fixed
     }
   },
+
   title: {
     type: String,
     required: [true, "title is required"],
@@ -33,6 +39,7 @@ const authorSchema = new mongoose.Schema({ //creting a Schema for author model
       message: "{VALUE} is not a valid title"
     }
   },
+
   email: {
     type: String,
     required: [true, "email is required"],
@@ -46,8 +53,10 @@ const authorSchema = new mongoose.Schema({ //creting a Schema for author model
       message: "{VALUE} is not a valid email"
     }
   },
+  
   password: {
     type: String,
+    minLength: 4, //bug fix for min length and max length
     required: [true, "Password is necessary"],
     trim: true,
     validate: {

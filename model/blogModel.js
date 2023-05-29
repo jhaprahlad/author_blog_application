@@ -3,38 +3,49 @@ const mongoose = require("mongoose") //importing mongoose
 const blogSchema = new mongoose.Schema({ //creting a Schema for blog model
     title:{
         type:String,
+        minLength:2, //big fixed for min length
         required:[true, "title is required"],
         trim:true
     },
+
     body:{
         type:String,
+        minLength:2, //big fixed for min length
         required:[true, "body is required"],
         trim:true
     },
+
     authorId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Author",
         required:[true, "authorId is required"]       
     },
+
     tags:[String],
+
     category:{
         type:String,
         required:[true, "category is required"],
         trim:true
     },
+
     subcategory:[String],
+
     deletedAt:{
         type:Date,
         default:null
     },
+
     publishedAt:{
         type:Date,
         default:null
     },
+
     isDeleted:{
         type:Boolean,
         default:false    
     },
+    
     isPublished:{
         type:Boolean,
         default:false   

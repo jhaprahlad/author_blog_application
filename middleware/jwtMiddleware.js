@@ -14,6 +14,10 @@ const verifyEmailPass = async function (req, res, next) {
         if (!validator.isEmail(email)) {
             return res.status(400).send({ status: false, message: "email is invalid" })
         }
+
+       
+
+
         let author = await authorModel.findOne({ email: email, password: password })
         if (!author) {
             return res.status(404).send({ status: false, message: "email or password is incorrect" })

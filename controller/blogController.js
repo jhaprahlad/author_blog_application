@@ -47,14 +47,15 @@ const updateBlogs = async function(req, res) {
         } else if (isPublished == false) {
             publishedAt = null
         }
-
+      
+        
         let updateBlogs = await blogModel.findByIdAndUpdate(
             blogId, {
                 $set: {
                     title: title,
                     body: body,
-                    isPublished: isPublished,
-                    publishedAt: publishedAt
+                    isPublished: isPublished,//always  true when anyone update the blogs
+                    publishedAt: publishedAt//current date
                 },
                 $addToSet: {
                     tags: tags,
