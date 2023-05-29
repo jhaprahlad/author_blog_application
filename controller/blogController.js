@@ -64,7 +64,10 @@ const updateBlogs = async function(req, res) {
 
             }, { new: true }
         )
-        if (updateBlogs.isDeleted == false) {
+        if (updateBlogs == null) {
+                    return res.status(404).send({ status: false, message: "blog not found" })
+                }
+        else if (updateBlogs.isDeleted == false) {
             return res.status(200).send({ status: true, message: "Blog updated successfully", data: updateBlogs })
         } else if (updateBlogs.isDeleted == true) {
             return res.status(404).send({ status: false, message: "blog is not present" })

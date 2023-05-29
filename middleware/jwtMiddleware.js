@@ -47,7 +47,7 @@ const verifytoken = async function (req, res, next) {
     }
     catch (err) {
         if (err.message.includes("signature") || err.message.includes("token") || err.message.includes("malformed")) {
-           return res.status(400).send({ status: false, message: "Invalid token" })
+           return res.status(401).send({ status: false, message: "You are not Authenticated" })
         }
        return res.status(500).send({ status: false, message: err.message })
     }
@@ -64,13 +64,13 @@ const authorizedAuthor = async function (req, res, next) {
             }
             let authorId = blog.authorId
             if (id != authorId) {
-                return res.status(401).send({ status: false, message: "You are not authorized" })
+                return res.status(403).send({ status: false, message: "You are not authorized" })
             }
         }
         let authorId=req.query.authorId
         if(authorId){
             if(id!=authorId){
-                return res.status(401).send({status:false,message:"You are not authorized"})
+                return res.status(403).send({status:false,message:"You are not authorized"})
             }
         }
         next()

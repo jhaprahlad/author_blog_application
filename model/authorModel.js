@@ -5,7 +5,7 @@ const authorSchema = new mongoose.Schema({ //creting a Schema for author model
     type: String,
     required: [true, "fname is required"],
     minLength:2,  //bug fix for min length and max length
-    maxLength:100,
+    maxLength:60,
     trim: true,
     validate: {
       validator: function (value) {
@@ -21,7 +21,7 @@ const authorSchema = new mongoose.Schema({ //creting a Schema for author model
     required: [true, "lname is required"],
     trim: true,
     minLength:2,   //bug fix for min length and max length
-    maxLength:100,
+    maxLength:60,
     validate: {
       validator: function (value) {
         const nameRegex = /^[A-Za-z\s]+$/;
@@ -56,12 +56,12 @@ const authorSchema = new mongoose.Schema({ //creting a Schema for author model
   
   password: {
     type: String,
-    minLength: 4, //bug fix for min length and max length
+    minLength: 4, //bug fix for min length 
     required: [true, "Password is necessary"],
     trim: true,
     validate: {
       validator: function (value) {
-        return !/\s/.test(value); 
+        return !/\s/.test(value);   // this regex for no space in password 
       },
       message: 'Password should not contain any spaces.'
     }
