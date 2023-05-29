@@ -4,15 +4,15 @@ const authorSchema = new mongoose.Schema({ //creting a Schema for author model
   fname: {
     type: String,
     required: [true, "fname is required"],
-    minLength:2,  //bug fix for min length and max length
-    maxLength:60,
+    minLength:[2,"fname must contain atleast two letters"], 
+    maxLength:[60,"maximum length for fname exceeded"],
     trim: true,
     validate: {
       validator: function (value) {
         const nameRegex = /^[A-Za-z\s]+$/;
         return nameRegex.test(value);
       },
-      message: 'Name should only contain only alphabets.'//bug fix
+      message: 'Name should only contain only alphabets.'
     }
   },
 
@@ -20,14 +20,14 @@ const authorSchema = new mongoose.Schema({ //creting a Schema for author model
     type: String,
     required: [true, "lname is required"],
     trim: true,
-    minLength:2,   //bug fix for min length and max length
-    maxLength:60,
+    minLength:[2,"lname must contain atleast two letters"], 
+    maxLength:[60,"maximum length for lname exceeded"],
     validate: {
       validator: function (value) {
         const nameRegex = /^[A-Za-z\s]+$/;
         return nameRegex.test(value);
       },
-      message: 'Name should only contain only alphabets'//bug fixed
+      message: 'Name should only contain only alphabets'
     }
   },
 
@@ -56,7 +56,7 @@ const authorSchema = new mongoose.Schema({ //creting a Schema for author model
   
   password: {
     type: String,
-    minLength: 4, //bug fix for min length 
+    minLength: [4,"password should be at least 4 characters"],
     required: [true, "Password is necessary"],
     trim: true,
     validate: {
