@@ -3,11 +3,17 @@
   "version": "1.0.0",
 
   "description": "In this project we are going to create a mini bloggin site.",
-
-
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository":{
+    "type":"git",
+    "url":"git+https://github.com/jhaprahlad/author_blog_project.git"
+  },
+  "engines":{
+    "npm" :">=8.0.0 <10.0.0",
+    "node": ">=16.0.0 <19.0.0"
   },
   "author": "Prahlad Kumar Jha, Sk Rohit Hossain, Saurabh Digambar, Sofiyan Sayyed",
   "license": "ISC",
